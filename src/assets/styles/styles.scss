@@ -1,0 +1,142 @@
+
+* {
+  box-sizing: border-box;
+  outline: none !important;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+  min-width: 320px;
+  overflow-x: hidden;
+
+  &.locked {
+    overflow-y: hidden;
+  }
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.4;
+  color: var(--black);
+  overflow: hidden;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+}
+
+/* Убираем внутренние отступы, если есть класс */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+.container {
+  position: relative;
+  max-width: 1395px;
+  padding: 0 40px;
+  margin: 0 auto;
+
+  @media(max-width: 767px) {
+    padding: 0 10px;
+  }
+}
+
+.btn {
+  font-size: 16px;
+  background: #efeff4;
+  color: #6d6d6d;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 32px;
+  font-weight: 500;
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+}
+
+input, textarea {
+  width: 100%;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 11px 16px;
+  font-size: 18px;
+  transition: all ease .3s;
+  &:focus {
+    border: 1.5px solid #039be5;
+
+    ~ label, input:valid ~ label, &.invalid ~ label {
+      top:-20px;
+      left: 0;
+      font-size: 12px;
+    }
+  }
+  &.invalid {
+    border: 1.5px solid #ef5436;
+    background-color: rgba(239,84,54,.1);
+  }
+}
+
+.input-check {
+  position: relative;
+  input {
+    display: none;
+
+    &+label {
+      display: inline-flex;
+      align-items: center;
+      user-select: none;
+      &:before {
+        content: '';
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        flex-grow: 0;
+        border: 1.5px solid #039be5;
+        border-radius: 3px;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        top: 2.5px;
+        left: 2px;
+        width: 7px;
+        height: 10px;
+        border-top: 2px solid transparent;
+        border-left: 2px solid transparent;
+        border-right: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+        transform: rotateZ(37deg);
+        transform-origin: 100% 100%;
+        transition: border .25s, background-color .25s, width .20s .1s, height .20s .1s, top .20s .1s, left .20s .1s;
+        z-index: 1;
+      }
+    }
+    &:checked + label {
+      &:before {
+        border: 1.5px solid #039be5;
+      }
+      &:after {
+        border-right: 2px solid #039be5;
+        border-bottom: 2px solid #039be5;
+      }
+    }
+  }
+  label {
+    position: relative;
+    cursor: pointer;
+  }
+
+}
